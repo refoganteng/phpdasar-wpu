@@ -1,6 +1,6 @@
 <?php
     //fungsi harus didefinisikan dahulu, then PANGGIL
-function salam($user) {
+function salam($user = "User yang budiman!") {
     return "Selamat " . getWaktu() .", $user!";
 }
 
@@ -29,8 +29,11 @@ function getWaktu() {
     <title>latihan function</title>
 </head>
 <body>
-    <h1> 
-        <?= salam("Revo Nando"); ?> 
-    </h1>
+    <h2> 
+        <?php
+        echo salam(); echo "<br>"; 
+        echo salam("Revo Nando"); echo "<br>"; 
+        ?> 
+    </h2>
 </body>
 </html>
