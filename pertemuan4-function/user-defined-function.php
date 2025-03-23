@@ -32,7 +32,7 @@ function getWaktu() {
     <h2> 
         <?php
         echo salam(); echo "<br>"; 
-        echo salam("Revo Nando"); echo "<br>"; 
+        echo salam("Revo Nando");
         ?> 
     </h2>
 </body>

@@ -117,10 +117,6 @@
         </ul>
     <?php endforeach; ?>
 
-
-
-
-
 </body>
 
 </html>
