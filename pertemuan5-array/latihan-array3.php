@@ -2,14 +2,14 @@
 
 $students = ["Revo Nando", "044050187", "Statistika", "refonndd@gmail.com"];
 
-//array in array [multidemensi]
+//array in array [multidemensi] //masih array numerik
 $dataStudents = [
     ["Revo Nando", "044050187", "Statistika", "refonndd@gmail.com"],
     ["Rezqy TA", "04484748", "Komputasi", "arumjamet@bps.go.id"],
     ["Ahmad Kaffa", "8324342", "Teknik Pertambangan", "kaffakapoy@gmail.com"],
 ];
 
-//array asosiatif
+//array asosiatif //biar ga ketuker
 $dataStudentsAsosiatifs = [
     [
         "nama" => "Revo Nando",
