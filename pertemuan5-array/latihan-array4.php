@@ -103,17 +103,17 @@
 
     <div class="clear"></div>
 
-    <?php foreach ($databaseMahasiswa as $nomorAbsen => $dataMhs) : ?>
-        <h4>Mahasiswa ke-<?= ($nomorAbsen + 1) . "=======> " . $dataMhs["nama"]; ?></h4>
+    <?php foreach ($databaseMahasiswa as $nomorAbsen => $mahasiswaData) : ?>
+        <h4>Mahasiswa ke-<?= ($nomorAbsen + 1) . "=======> " . $mahasiswaData["nama"]; ?></h4>
         <ul>
             <li>
-                <img src="foto-mahasiswa/<?= $dataMhs["foto"]; ?> ">
+                <img src="foto-mahasiswa/<?= $mahasiswaData["foto"]; ?> ">
             </li>
-            <li>NIM: <?= $dataMhs["nim"]; ?></li>
-            <li>Jurusan: <?= $dataMhs["jurusan"]; ?></li>
-            <li>Email: <?= $dataMhs["email"]; ?></li>
-            <li>Nilai UTS: <?= $dataMhs["nilai"]["uts"]; ?></li>
-            <li>Nilai UAS: <?= $dataMhs["nilai"]["uas"]; ?></li>
+            <li>NIM: <?= $mahasiswaData["nim"]; ?></li>
+            <li>Jurusan: <?= $mahasiswaData["jurusan"]; ?></li>
+            <li>Email: <?= $mahasiswaData["email"]; ?></li>
+            <li>Nilai UTS: <?= $mahasiswaData["nilai"]["uts"]; ?></li>
+            <li>Nilai UAS: <?= $mahasiswaData["nilai"]["uas"]; ?></li>
         </ul>
     <?php endforeach; ?>
 
