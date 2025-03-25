@@ -30,13 +30,13 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
             <th>Email</th>
             <th>Jurusan</th>
         </tr>
-        <?php $i = 1; ?>
+
+       <?php $i = 1; ?>
         <?php foreach ($mahasiswa as $row) : ?>
             <tr>
                 <td><?= $i; ?></td>
                 <td>
-                    <a href="">Ubah</a> |
-                    <a href="">Hapus</a>
+                    <a href="">Ubah</a> | <a href="">Hapus</a>
                 </td>
                 <td>
                     <img src="foto-mahasiswa/<?= $row["foto"]; ?>" alt="" width="50">
