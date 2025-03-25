@@ -14,6 +14,21 @@ function query($query)
     return $rows;
 }
 
+//tambah data mahasiswa
+function tambah($data)
+{
+    //ambil data dari tiap elemen dalam form
+    global $koneksi;
+    $nama = htmlspecialchars($data["nama"]);
+    $nim = htmlspecialchars($data["nim"]);
+    $email = htmlspecialchars($data["email"]);
+    $jurusan = htmlspecialchars($data["jurusan"]);
+    $foto = htmlspecialchars($data["foto"]);
 
+    //query insert data
+    $query = "INSERT INTO mahasiswa (nama, nim, email, jurusan, foto) 
+          VALUES ('$nama', '$nim', '$email', '$jurusan', '$foto')";
 
-?>
+    mysqli_query($koneksi, $query);
+    return mysqli_affected_rows($koneksi);
+}
