@@ -39,3 +39,8 @@ WHERE id = 1;
 -- Delete data di tabel mahasiswa
 DELETE FROM mahasiswa
 WHERE nama = 'Gilang Saputra';
+
+-- ganti jpg jadi jpeg
+UPDATE mahasiswa 
+SET foto = REPLACE(foto, '.jpg', '.jpeg') 
+WHERE foto LIKE '%.jpg';
