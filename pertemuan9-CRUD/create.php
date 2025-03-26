@@ -1,33 +1,24 @@
 <?php
-// Koneksi ke database
-$koneksi = mysqli_connect("localhost", "root", "", "phpdasar");
+require 'functions.php';
 
 if (isset($_POST["submit"])) {
-    // Ambil data dari tiap elemen dalam form
-    $nama = $_POST["nama"];
-    $nim = $_POST["nim"];
-    $email = $_POST["email"];
-    $jurusan = $_POST["jurusan"];
-    $foto = $_POST["foto"];
-
-    // Query INSERT data
-    $query = "INSERT INTO mahasiswa 
-                VALUES 
-                ('', '$nama, '$nim', '$email', '$jurusan', '$foto')";
-
-    mysqli_query($koneksi, $query);
 
     // Redirect ke index.php setelah data berhasil ditambahkan
-    header("Location: index.php");
+    // header("Location: index.php");
+    // exit;
 
-    // cek berhasil nggak?
-    if (mysqli_affected_rows($koneksi) > 0) {
-        echo "berhasil";
-        echo "<br>";
+    //cek apakah data berhasil ditambahkan atau tidak
+    if (tambah ($_POST) > 0) {
+        echo "<script>
+            alert('data berhasil ditambahkan');
+            document.location.href = 'index.php';
+        </script>
+        ";
     } else {
-        echo "gagal";
-        echo "<br>";
-        echo mysqli_error($koneksi);
+        echo "<script>
+            alert('data gagal ditambahkan');            
+        </script>
+        ";
     }
 }
 ?>
@@ -56,27 +47,27 @@ if (isset($_POST["submit"])) {
         <form action="" method="post">
             <div class="mb-4">
                 <label for="nama" class="block text-green-700 font-semibold">Nama:</label>
-                <input type="text" name="nama" id="nama" class="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                <input type="text" name="nama" id="nama" required  class="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
             </div>
 
             <div class="mb-4">
                 <label for="nim" class="block text-green-700 font-semibold">NIM:</label>
-                <input type="text" name="nim" id="nim" class="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                <input type="text" name="nim" id="nim" required class="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
             </div>
 
             <div class="mb-4">
                 <label for="email" class="block text-green-700 font-semibold">E-Mail:</label>
-                <input type="text" name="email" id="email" class="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                <input type="text" name="email" id="email" required class="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
             </div>
 
             <div class="mb-4">
                 <label for="jurusan" class="block text-green-700 font-semibold">Jurusan:</label>
-                <input type="text" name="jurusan" id="jurusan" class="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                <input type="text" name="jurusan" id="jurusan" required class="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
             </div>
 
             <div class="mb-4">
                 <label for="foto" class="block text-green-700 font-semibold">Foto:</label>
-                <input type="text" name="foto" id="foto" class="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                <input type="text" name="foto" id="foto" required class="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
             </div>
 
             <button type="submit" name="submit" class="w-full bg-green-500 text-white font-bold py-2 rounded-md hover:bg-green-600 transition duration-200">

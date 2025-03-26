@@ -36,14 +36,9 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
 
     <div class="max-w-6xl mx-auto bg-white p-6 rounded-lg shadow-lg">
 
+        <h1 class="text-2xl bg-blue-500 py-2 px-4 rounded-lg font-bold mb-4 text-center text-white shadow-md hover:bg-blue-700">Daftar Mahasiswa</h1>
 
-        <div class="mt-4">
-            <a href="create.php" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition duration-200">Tambah Data Mahasiswa</a>
-        </div>
-
-        <h1 class="text-2xl font-bold mb-4 text-center text-gray-700">Daftar Mahasiswa</h1>
-
-        <table class="w-full border-collapse border border-gray-300 shadow-sm">
+        <table class="mt-5 w-full border-collapse border border-gray-300 shadow-sm">
             <thead class="bg-blue-500 text-white">
                 <tr>
                     <th class="border border-gray-300 px-4 py-2">No.</th>
@@ -63,21 +58,26 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
                         <td class="border border-gray-300 px-4 py-2 text-center"><?= $i; ?></td>
                         <td class="border border-gray-300 px-4 py-2 text-center">
                             <a href="#" class="text-blue-500 hover:underline">Ubah</a> |
-                            <a href="#" class="text-red-500 hover:underline">Hapus</a>
+                            <a href="hapus.php?id=<?= $row["id"]; ?>" class="text-red-500 hover:underline">Hapus</a>
                         </td>
                         <td class="border border-gray-300 px-4 py-2 text-center">
                             <img src="foto-mahasiswa/<?= htmlspecialchars($row["foto"]); ?>" alt="Foto" class="w-12 h-12 rounded-full object-cover mx-auto">
                         </td>
-                        <td class="border border-gray-300 px-4 py-2"><?= htmlspecialchars($row["nama"]); ?></td>
-                        <td class="border border-gray-300 px-4 py-2 text-center"><?= htmlspecialchars($row["nim"]); ?></td>
-                        <td class="border border-gray-300 px-4 py-2"><?= htmlspecialchars($row["email"]); ?></td>
-                        <td class="border border-gray-300 px-4 py-2"><?= htmlspecialchars($row["jurusan"]); ?></td>
+                        <td class="border border-gray-300 px-4 py-2"><?= $row["nama"]; ?></td>
+                        <td class="border border-gray-300 px-4 py-2"><?= $row["nim"]; ?></td>
+                        <td class="border border-gray-300 px-4 py-2"><?= $row["email"]; ?></td>
+                        <td class="border border-gray-300 px-4 py-2"><?= $row["jurusan"]; ?></td>
                     </tr>
                     <?php $i++; ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <div class="mt-6">
+            <a href="create.php" class="bg-green-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition duration-200">Tambah Data Mahasiswa</a>
+        </div>
     </div>
+
+    
 
 </body>
 
