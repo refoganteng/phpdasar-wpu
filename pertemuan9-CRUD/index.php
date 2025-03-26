@@ -38,6 +38,9 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
 
         <h1 class="text-2xl bg-blue-500 py-2 px-4 rounded-lg font-bold mb-4 text-center text-white shadow-md hover:bg-blue-700">Daftar Mahasiswa</h1>
 
+        <div class="mt-6">
+            <a href="create.php" class="bg-green-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-green-700 transition duration-200">Tambah Data Mahasiswa</a>
+        </div> 
         <table class="mt-5 w-full border-collapse border border-gray-300 shadow-sm">
             <thead class="bg-blue-500 text-white">
                 <tr>
@@ -64,7 +67,7 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
                             <img src="foto-mahasiswa/<?= htmlspecialchars($row["foto"]); ?>" alt="Foto" class="w-12 h-12 rounded-full object-cover mx-auto">
                         </td>
                         <td class="border border-gray-300 px-4 py-2"><?= $row["nama"]; ?></td>
-                        <td class="border border-gray-300 px-4 py-2"><?= $row["nim"]; ?></td>
+                        <td class="border border-gray-300 px-4 py-2 text-center"><?= $row["nim"]; ?></td>
                         <td class="border border-gray-300 px-4 py-2"><?= $row["email"]; ?></td>
                         <td class="border border-gray-300 px-4 py-2"><?= $row["jurusan"]; ?></td>
                     </tr>
@@ -72,12 +75,10 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <div class="mt-6">
-            <a href="create.php" class="bg-green-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition duration-200">Tambah Data Mahasiswa</a>
-        </div>
+
     </div>
 
-    
+
 
 </body>
 

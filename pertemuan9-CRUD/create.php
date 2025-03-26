@@ -8,7 +8,7 @@ if (isset($_POST["submit"])) {
     // exit;
 
     //cek apakah data berhasil ditambahkan atau tidak
-    if (tambah ($_POST) > 0) {
+    if (tambah($_POST) > 0) {
         echo "<script>
             alert('data berhasil ditambahkan');
             document.location.href = 'index.php';
@@ -47,7 +47,7 @@ if (isset($_POST["submit"])) {
         <form action="" method="post">
             <div class="mb-4">
                 <label for="nama" class="block text-green-700 font-semibold">Nama:</label>
-                <input type="text" name="nama" id="nama" required  class="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                <input type="text" name="nama" id="nama" required class="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
             </div>
 
             <div class="mb-4">
@@ -70,9 +70,12 @@ if (isset($_POST["submit"])) {
                 <input type="text" name="foto" id="foto" required class="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
             </div>
 
-            <button type="submit" name="submit" class="w-full bg-green-500 text-white font-bold py-2 rounded-md hover:bg-green-600 transition duration-200">
+            <button type="submit" name="submit" class="mb-6 w-full bg-green-500 text-white font-bold py-2 rounded-md hover:bg-green-600 transition duration-200">
                 Tambah Data
             </button>
+            <div class="text-sm py-2 px-4 rounded-lg mb-4 text-center text-blue-500 hover:text-blue-700">
+                <a href="index.php">Daftar Mahasiswa</a>
+            </div>
         </form>
     </div>
 
