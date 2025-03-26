@@ -20,7 +20,7 @@ if (isset($_POST["submit"])) {
     // Redirect ke index.php setelah data berhasil ditambahkan
     header("Location: index.php");
 
-    cek berhasil nggak?
+    // cek berhasil nggak?
     if (mysqli_affected_rows($koneksi) > 0) {
         echo "berhasil";
         echo "<br>";
