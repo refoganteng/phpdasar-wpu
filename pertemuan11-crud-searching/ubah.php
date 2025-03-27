@@ -4,7 +4,7 @@ require 'functions.php';
 
 //[UPDATE QUERY] Ambil data mahasiswa berdasarkan id
 $id = $_GET["id"];
-$row = query("SELECT * FROM mahasiswa WHERE id = $id")[0];
+$mhs = query("SELECT * FROM mahasiswa WHERE id = $id")[0];
 
 //cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST["submit"])) {
@@ -50,31 +50,31 @@ if (isset($_POST["submit"])) {
         <h1 class="text-2xl font-bold text-purple-600 text-center mb-6">Ubah Data Mahasiswa</h1>
 
         <form action="" method="post">
-            <input type="hidden" name="id" value="<?= $row["id"]; ?>">
+            <input type="hidden" name="id" value="<?= $mhs["id"]; ?>">
 
             <div class="mb-4">
                 <label for="nama" class="block text-purple-700 font-semibold">Nama:</label>
-                <input type="text" name="nama" id="nama" required value="<?= $row["nama"]; ?>" class="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <input type="text" name="nama" id="nama" required value="<?= $mhs["nama"]; ?>" class="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
             </div>
 
             <div class="mb-4">
                 <label for="nim" class="block text-purple-700 font-semibold">NIM:</label>
-                <input type="text" name="nim" id="nim" required value="<?= $row["nim"]; ?>" class="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <input type="text" name="nim" id="nim" required value="<?= $mhs["nim"]; ?>" class="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
             </div>
 
             <div class="mb-4">
                 <label for="email" class="block text-purple-700 font-semibold">E-Mail:</label>
-                <input type="text" name="email" id="email" required value="<?= $row["email"]; ?>" class="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <input type="text" name="email" id="email" required value="<?= $mhs["email"]; ?>" class="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
             </div>
 
             <div class="mb-4">
                 <label for="jurusan" class="block text-purple-700 font-semibold">Jurusan:</label>
-                <input type="text" name="jurusan" id="jurusan" required value="<?= $row["jurusan"]; ?>" class="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <input type="text" name="jurusan" id="jurusan" required value="<?= $mhs["jurusan"]; ?>" class="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
             </div>
 
             <div class="mb-4">
                 <label for="foto" class="block text-purple-700 font-semibold">Foto:</label>
-                <input type="text" name="foto" id="foto" required value="<?= $row["foto"]; ?>" class="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <input type="text" name="foto" id="foto" required value="<?= $mhs["foto"]; ?>" class="w-full p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
             </div>
 
             <button type="submit" name="submit" class="mb-6 w-full bg-purple-500 text-white font-bold py-2 rounded-md hover:bg-purple-600 transition duration-200">

@@ -8,11 +8,11 @@ function query($query)
 {
     global $koneksi;
     $result = mysqli_query($koneksi, $query);
-    $rows = [];
-    while ($row = mysqli_fetch_assoc($result)) {
-        $rows[] = $row;
+    $mhss = [];
+    while ($mhs = mysqli_fetch_assoc($result)) {
+        $mhss[] = $mhs;
     }
-    return $rows;
+    return $mhss;
 }
 
 //[CREATE] tambah data mahasiswa

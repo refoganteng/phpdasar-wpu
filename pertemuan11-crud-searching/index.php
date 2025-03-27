@@ -19,6 +19,7 @@ if (isset($_POST["cari"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman Admin</title>
+    <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico">
 
     <!-- Tambahkan Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -61,20 +62,20 @@ if (isset($_POST["cari"])) {
 
             <tbody class="bg-white">
                 <?php $i = 1; ?>
-                <?php foreach ($mahasiswa as $row) : ?>
+                <?php foreach ($mahasiswa as $mhs) : ?>
                     <tr class="hover:bg-gray-100">
                         <td class="border border-gray-300 px-4 py-2 text-center"><?= $i; ?></td>
                         <td class="border border-gray-300 px-4 py-2 text-center">
-                            <a href="ubah.php?id=<?= $row["id"]; ?>" class="text-blue-500 hover:underline">Ubah</a> |
-                            <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Yakin ingin menghapus data?')" class="text-red-500 hover:underline">Hapus</a>
+                            <a href="ubah.php?id=<?= $mhs["id"]; ?>" class="text-blue-500 hover:underline">Ubah</a> |
+                            <a href="hapus.php?id=<?= $mhs["id"]; ?>" onclick="return confirm('Yakin ingin menghapus data?')" class="text-red-500 hover:underline">Hapus</a>
                         </td>
                         <td class="border border-gray-300 px-4 py-2 text-center">
-                            <img src="foto-mahasiswa/<?= htmlspecialchars($row["foto"]); ?>" alt="Foto" class="w-12 h-12 rounded-full object-cover mx-auto">
+                            <img src="foto-mahasiswa/<?= htmlspecialchars($mhs["foto"]); ?>" alt="Foto" class="w-12 h-12 rounded-full object-cover mx-auto">
                         </td>
-                        <td class="border border-gray-300 px-4 py-2"><?= $row["nama"]; ?></td>
-                        <td class="border border-gray-300 px-4 py-2 text-center"><?= $row["nim"]; ?></td>
-                        <td class="border border-gray-300 px-4 py-2"><?= $row["email"]; ?></td>
-                        <td class="border border-gray-300 px-4 py-2"><?= $row["jurusan"]; ?></td>
+                        <td class="border border-gray-300 px-4 py-2"><?= $mhs["nama"]; ?></td>
+                        <td class="border border-gray-300 px-4 py-2 text-center"><?= $mhs["nim"]; ?></td>
+                        <td class="border border-gray-300 px-4 py-2"><?= $mhs["email"]; ?></td>
+                        <td class="border border-gray-300 px-4 py-2"><?= $mhs["jurusan"]; ?></td>
                     </tr>
                     <?php $i++; ?>
                 <?php endforeach; ?>
