@@ -1,8 +1,8 @@
 <?php
-// Koneksi ke database
+// Koneksi ke database + function query
 require 'functions.php';
 
-// Ambil data mahasiswa dari database
+// [read query] Ambil data mahasiswa dari database
 $mahasiswa = query("SELECT * FROM mahasiswa");
 ?>
 
@@ -61,7 +61,7 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
                         <td class="border border-gray-300 px-4 py-2 text-center"><?= $i; ?></td>
                         <td class="border border-gray-300 px-4 py-2 text-center">
                             <a href="#" class="text-blue-500 hover:underline">Ubah</a> |
-                            <a href="hapus.php?id=<?= $row["id"]; ?>" class="text-red-500 hover:underline">Hapus</a>
+                            <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Yakin ingin menghapus data?')" class="text-red-500 hover:underline">Hapus</a>
                         </td>
                         <td class="border border-gray-300 px-4 py-2 text-center">
                             <img src="foto-mahasiswa/<?= htmlspecialchars($row["foto"]); ?>" alt="Foto" class="w-12 h-12 rounded-full object-cover mx-auto">

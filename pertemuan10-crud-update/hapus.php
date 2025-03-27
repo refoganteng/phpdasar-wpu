@@ -2,6 +2,7 @@
 
 require 'functions.php';
 
+// [DELETE] hapus data by id
 $id = $_GET["id"];
 
 if (hapus($id) > 0) {
@@ -20,6 +21,7 @@ if (hapus($id) > 0) {
     ";
 }
 
+// [DELETE] hapus daya by id
 function hapus($id)
 {
     global $koneksi;

@@ -2,7 +2,8 @@
 
 //koneksi ke database phpdasar
 $koneksi = mysqli_connect("localhost", "root", "", "phpdasar"); //para: host, username, pw, database
-//baca tabel mahasiswa
+
+//[READ] baca tabel mahasiswa
 function query($query)
 {
     global $koneksi;
@@ -14,7 +15,7 @@ function query($query)
     return $rows;
 }
 
-//tambah data mahasiswa
+//[CREATE] tambah data mahasiswa
 function tambah($data)
 {
     //ambil data dari tiap elemen dalam form
@@ -32,3 +33,5 @@ function tambah($data)
     mysqli_query($koneksi, $query);
     return mysqli_affected_rows($koneksi);
 }
+
+

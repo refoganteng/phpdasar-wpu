@@ -1,11 +1,8 @@
 <?php
 require 'functions.php';
 
+//[cek sudah submit belum]
 if (isset($_POST["submit"])) {
-
-    // Redirect ke index.php setelah data berhasil ditambahkan
-    // header("Location: index.php");
-    // exit;
 
     //cek apakah data berhasil ditambahkan atau tidak
     if (tambah($_POST) > 0) {
@@ -21,6 +18,7 @@ if (isset($_POST["submit"])) {
         ";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
