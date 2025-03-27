@@ -22,23 +22,15 @@ if (isset($_POST["cari"])) {
 
     <!-- Tambahkan Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        @font-face {
-            font-family: 'Dank Mono';
-            src: url('fonts/DankMono-Regular.woff2') format('woff2'),
-                url('fonts/DankMono-Regular.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        .font-dank {
-            font-family: 'Dank Mono', monospace;
+        body {
+            font-family: 'Poppins', sans-serif;
         }
     </style>
 </head>
 
-<body class="bg-gray-100 p-6 font-dank">
+<body class="bg-gray-100 p-6 font-sans">
 
     <div class="max-w-6xl mx-auto bg-white p-6 rounded-lg shadow-lg">
 
@@ -90,9 +82,6 @@ if (isset($_POST["cari"])) {
         </table>
 
     </div>
-
-
-
 </body>
 
 </html>
