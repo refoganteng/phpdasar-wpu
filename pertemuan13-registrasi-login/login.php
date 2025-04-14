@@ -17,6 +17,9 @@ if (isset($_POST["login"])) {
             header("Location: index.php");
             exit;
         }
+    }
+
+    $error = true;
 }
 
 ?>
@@ -53,6 +56,11 @@ if (isset($_POST["login"])) {
                 <input type="password" name="password" id="password"
                     class="mt-1 w-full px-4 py-2 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400">
             </div>
+
+            <?php if (isset($error)) : ?>
+                <p class="text-red-500" style="color: red; font-style: italic;">username / password salah</p>
+            <?php endif; ?>
+
             <div>
                 <button type="submit" name="login"
                     class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition duration-300">
