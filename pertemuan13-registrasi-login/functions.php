@@ -164,7 +164,6 @@ function register($data) {
                 VALUES ('$username', '$password')";
     mysqli_query($koneksi, $query);
     return mysqli_affected_rows($koneksi);  
-
 }
 
 

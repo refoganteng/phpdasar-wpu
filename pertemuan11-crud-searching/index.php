@@ -3,7 +3,7 @@
 require 'functions.php';
 
 // [read query] Ambil data mahasiswa dari database
-$mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC");
+$mahasiswa = query("SELECT * FROM mahasiswa ORDER BY nama ASC");
 
 // ketika tombol cari diklik
 if (isset($_POST["cari"])) {
