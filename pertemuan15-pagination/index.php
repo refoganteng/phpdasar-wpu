@@ -12,14 +12,15 @@ if (!isset($_SESSION["login"])) {
 require 'functions.php';
 
 //konfigurasi pagination
-$jumlahDataPerHalaman = 5;
+$jumlahDataPerHalaman = 3;
 $jumlahData = count(query("SELECT * FROM mahasiswa"));
 $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
-$halamanAktif = (isset($_GET["halaman"])) ? $_GET["halaman"] : 1;
-$awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
+$halamanAktif = isset($_GET["halaman"]) ? $_GET["halaman"] : 1;
+// $awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
 
 // [read query] Ambil data mahasiswa dari database
-$mahasiswa = query("SELECT * FROM mahasiswa LIMIT $awalData, $jumlahDataPerHalaman ORDER BY id DESC");
+// $mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC");
+$mahasiswa = query("SELECT * FROM mahasiswa LIMIT 0, $jumlahDataPerHalaman");
 
 
 // ketika tombol cari diklik
@@ -101,6 +102,8 @@ if (isset($_POST["cari"])) {
                 <?php endforeach; ?>
             </tbody>
         </table>
+
+        
 
     </div>
 </body>
