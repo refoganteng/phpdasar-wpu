@@ -26,7 +26,7 @@ function tambah($data)
     $jurusan = htmlspecialchars($data["jurusan"]);
 
     // $foto = htmlspecialchars($data["foto"]);
-    
+
     //upload foto
     $foto = upload();
     if (!$foto) {
@@ -76,16 +76,16 @@ function ubah($data)
 
 
 //[SEARCH] cari data mahasiswa
-function cari($keyword)
-{
-    $query = "SELECT * FROM mahasiswa WHERE
-                nim LIKE '%$keyword%' OR
-                nama LIKE '%$keyword%' OR
-                jurusan LIKE '%$keyword%' OR
-                email LIKE '%$keyword%'
-            ";
-    return query($query);
-}
+// function cari($keyword)
+// {
+//     $query = "SELECT * FROM mahasiswa WHERE
+//                 nim LIKE '%$keyword%' OR
+//                 nama LIKE '%$keyword%' OR
+//                 jurusan LIKE '%$keyword%' OR
+//                 email LIKE '%$keyword%'
+//             ";
+//     return query($query);
+// }
 
 //[CREATE] upload foto
 function upload()
@@ -120,7 +120,7 @@ function upload()
             alert('ukuran gambar terlalu besar!');
         </script>";
         return false;
-    }    
+    }
 
     //lolos pengecekan, gambar siap diupload
     //generate nama gambar baru
@@ -128,12 +128,13 @@ function upload()
     $namaFileBaru .= '.';
     $namaFileBaru .= $ekstensiGambar;
 
-    move_uploaded_file($tmpName, 'foto-mahasiswa/'.$namaFileBaru);
+    move_uploaded_file($tmpName, 'foto-mahasiswa/' . $namaFileBaru);
     return $namaFileBaru;
 }
 
 //[REGISTRASI] 
-function register($data) {
+function register($data)
+{
     global $koneksi;
     $username = strtolower(stripcslashes($data["username"]));
     $password = mysqli_real_escape_string($koneksi, $data["password"]);
@@ -147,7 +148,7 @@ function register($data) {
         </script>";
         return false;
     }
-    
+
     //cek password
     if ($password !== $password2) {
         echo "<script>
@@ -163,8 +164,5 @@ function register($data) {
     $query = "INSERT INTO user (username, password) 
                 VALUES ('$username', '$password')";
     mysqli_query($koneksi, $query);
-    return mysqli_affected_rows($koneksi);  
+    return mysqli_affected_rows($koneksi);
 }
-
-
-

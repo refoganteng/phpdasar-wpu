@@ -11,21 +11,36 @@ if (!isset($_SESSION["login"])) {
 // Koneksi ke database + function query
 require 'functions.php';
 
-//konfigurasi pagination
+//konfigurasi pagination + cari
+$keyword = isset($_GET["keyword"]) ? $_GET["keyword"] : '';
+
 $jumlahDataPerHalaman = 3;
-$jumlahData = count(query("SELECT * FROM mahasiswa"));
+
+// lihat jumlah data berdasarkan isi keyword
+if ($keyword) {
+    $jumlahData = count(query("SELECT * FROM mahasiswa WHERE 
+        nim LIKE '%$keyword%' OR 
+        nama LIKE '%$keyword%' OR 
+        jurusan LIKE '%$keyword%' OR 
+        email LIKE '%$keyword%'"));
+} else {
+    $jumlahData = count(query("SELECT * FROM mahasiswa"));
+}
+
 $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
 $halamanAktif = isset($_GET["halaman"]) ? $_GET["halaman"] : 1;
-// $awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
+$awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
 
-// [read query] Ambil data mahasiswa dari database
-// $mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC");
-$mahasiswa = query("SELECT * FROM mahasiswa LIMIT 0, $jumlahDataPerHalaman");
-
-
-// ketika tombol cari diklik
-if (isset($_POST["cari"])) {
-    $mahasiswa = cari($_POST["keyword"]);
+// [read query] Ambil data mahasiswa dari database + pagination + cari
+if ($keyword) {
+    $mahasiswa = query("SELECT * FROM mahasiswa WHERE 
+        nim LIKE '%$keyword%' OR 
+        nama LIKE '%$keyword%' OR 
+        jurusan LIKE '%$keyword%' OR 
+        email LIKE '%$keyword%' 
+        LIMIT $awalData, $jumlahDataPerHalaman");
+} else {
+    $mahasiswa = query("SELECT * FROM mahasiswa LIMIT $awalData, $jumlahDataPerHalaman");
 }
 
 ?>
@@ -62,9 +77,9 @@ if (isset($_POST["cari"])) {
             <a href="create.php" class="bg-green-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-green-700 transition duration-200">Tambah Data Mahasiswa
             </a> <br>
 
-            <form action="" method="post">
+            <form action="" method="get">
                 <input class="p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" autocomplete="off" autofocus placeholder="Ketik keyword..." type="text" name="keyword" id="">
-                <button type="submit" name="cari" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-200">Cari</button>
+                <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-200">Cari</button>
             </form>
 
         </div>
@@ -82,7 +97,7 @@ if (isset($_POST["cari"])) {
             </thead>
 
             <tbody class="bg-white">
-                <?php $i = 1; ?>
+                <?php $i = $awalData + 1; ?>
                 <?php foreach ($mahasiswa as $mhs) : ?>
                     <tr class="hover:bg-gray-100">
                         <td class="border border-gray-300 px-4 py-2 text-center"><?= $i; ?></td>
@@ -100,10 +115,36 @@ if (isset($_POST["cari"])) {
                     </tr>
                     <?php $i++; ?>
                 <?php endforeach; ?>
+
+                <!-- jika hasil cari kosong -->
+                <?php if (empty($mahasiswa)) : ?>
+                    <tr>
+                        <td colspan="7" class="text-center py-4">Data tidak ditemukan</td>
+                    </tr>
+                <?php endif; ?>
+
+
             </tbody>
         </table>
 
-        
+        <!-- navigasi pagination -->
+        <div class="mt-4">
+            <?php if ($halamanAktif > 1) : ?>
+                <a href="?halaman=<?= $halamanAktif - 1; ?>&keyword=<?= $keyword; ?>" class="text-blue-500 hover:underline"> &laquo; Previous</a>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+                <?php if ($i == $halamanAktif) : ?>
+                    <a href="?halaman=<?= $i; ?>&keyword=<?= $keyword; ?>" class="font-bold text-blue-500"><?= $i; ?></a>
+                <?php else : ?>
+                    <a href="?halaman=<?= $i; ?>&keyword=<?= $keyword; ?>" class="text-blue-500 hover:underline"><?= $i; ?></a>
+                <?php endif; ?>
+            <?php endfor; ?>
+
+            <?php if ($halamanAktif < $jumlahHalaman) : ?>
+                <a href="?halaman=<?= $halamanAktif + 1; ?>&keyword=<?= $keyword; ?>" class="text-blue-500 hover:underline">Next &raquo;</a>
+            <?php endif; ?>
+        </div>
 
     </div>
 </body>
