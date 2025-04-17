@@ -14,7 +14,8 @@ require 'functions.php';
 //konfigurasi pagination + cari
 $keyword = isset($_GET["keyword"]) ? $_GET["keyword"] : '';
 
-$jumlahDataPerHalaman = 3;
+// $jumlahDataPerHalaman = 3;
+$jumlahDataPerHalaman = isset($_GET["jumlahDataTampil"]) ? (int)$_GET["jumlahDataTampil"] : 2;
 
 // lihat jumlah data berdasarkan isi keyword
 if ($keyword) {
@@ -102,8 +103,9 @@ if ($keyword) {
                     <tr class="hover:bg-gray-100">
                         <td class="border border-gray-300 px-4 py-2 text-center"><?= $i; ?></td>
                         <td class="border border-gray-300 px-4 py-2 text-center">
-                            <a href="ubah.php?id=<?= $mhs["id"]; ?>" class="text-blue-500 hover:underline">Ubah</a> |
-                            <a href="hapus.php?id=<?= $mhs["id"]; ?>" onclick="return confirm('Yakin ingin menghapus data?')" class="text-red-500 hover:underline">Hapus</a>
+                            <a href="ubah.php?id=<?= $mhs["id"]; ?>" class="inline-block bg-blue-500 text-white py-1 px-2 rounded-lg shadow-md hover:bg-blue-700 transition duration-200">Ubah</a> 
+                            <a href="hapus.php?id=<?= $mhs["id"]; ?>" onclick="return confirm('Yakin ingin menghapus data?')" class="inline-block bg-red-500 text-white py-1 px-2 rounded-lg shadow-md hover:bg-red-700 transition duration-200">Hapus</a>
+
                         </td>
                         <td class="border border-gray-300 px-4 py-2 text-center">
                             <img src="foto-mahasiswa/<?= htmlspecialchars($mhs["foto"]); ?>" alt="Foto" class="w-12 h-12 rounded-full object-cover mx-auto">
@@ -128,22 +130,33 @@ if ($keyword) {
         </table>
 
         <!-- navigasi pagination -->
-        <div class="mt-4">
+        <div class="mt-4 flex justify-end gap-2 items-center">
             <?php if ($halamanAktif > 1) : ?>
-                <a href="?halaman=<?= $halamanAktif - 1; ?>&keyword=<?= $keyword; ?>" class="text-blue-500 hover:underline"> &laquo; Previous</a>
+                <a href="?halaman=<?= $halamanAktif - 1; ?>&keyword=<?= $keyword; ?>&jumlahDataTampil=<?= $jumlahDataPerHalaman; ?>" class="text-blue-500 hover:underline"> &laquo; Previous</a>
             <?php endif; ?>
 
             <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
                 <?php if ($i == $halamanAktif) : ?>
-                    <a href="?halaman=<?= $i; ?>&keyword=<?= $keyword; ?>" class="font-bold text-blue-500"><?= $i; ?></a>
+                    <a href="?halaman=<?= $i; ?>&keyword=<?= $keyword; ?>&jumlahDataTampil=<?= $jumlahDataPerHalaman; ?>" class="font-bold text-blue-500"><?= $i; ?></a>
                 <?php else : ?>
-                    <a href="?halaman=<?= $i; ?>&keyword=<?= $keyword; ?>" class="text-blue-500 hover:underline"><?= $i; ?></a>
+                    <a href="?halaman=<?= $i; ?>&keyword=<?= $keyword; ?>&jumlahDataTampil=<?= $jumlahDataPerHalaman; ?>" class="text-blue-500 hover:underline"><?= $i; ?></a>
                 <?php endif; ?>
             <?php endfor; ?>
 
             <?php if ($halamanAktif < $jumlahHalaman) : ?>
-                <a href="?halaman=<?= $halamanAktif + 1; ?>&keyword=<?= $keyword; ?>" class="text-blue-500 hover:underline">Next &raquo;</a>
+                <a href="?halaman=<?= $halamanAktif + 1; ?>&keyword=<?= $keyword; ?>&jumlahDataTampil=<?= $jumlahDataPerHalaman; ?>" class="text-blue-500 hover:underline">Next &raquo;</a>
             <?php endif; ?>
+
+            <div class="flex items-center ml-4">
+                <form action="" method="get">
+                    <label for="jumlahDataTampil" class="mr-2">Jumlah Data:</label>
+                    <select name="jumlahDataTampil" id="jumlahDataTampil" onchange="this.form.submit()" class="border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="2" <?= $jumlahDataPerHalaman == 2 ? 'selected' : '' ?> class="text-center">2</option>
+                        <option value="3" <?= $jumlahDataPerHalaman == 3 ? 'selected' : '' ?> class="text-center">3</option>
+                        <option value="4" <?= $jumlahDataPerHalaman == 4 ? 'selected' : '' ?> class="text-center">4</option>
+                    </select>
+                </form>
+            </div>
         </div>
 
     </div>
