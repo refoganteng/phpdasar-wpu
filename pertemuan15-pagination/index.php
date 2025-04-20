@@ -80,7 +80,7 @@ if ($keyword) {
 
             <form action="" method="get">
                 <input class="p-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" autocomplete="off" autofocus placeholder="Ketik keyword..." type="text" name="keyword" id="">
-                <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-200">Cari</button>
+                <button type="submit" class="ml-4 bg-blue-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-200">Cari</button>
             </form>
 
         </div>
@@ -103,7 +103,7 @@ if ($keyword) {
                     <tr class="hover:bg-gray-100">
                         <td class="border border-gray-300 px-4 py-2 text-center"><?= $i; ?></td>
                         <td class="border border-gray-300 px-4 py-2 text-center">
-                            <a href="ubah.php?id=<?= $mhs["id"]; ?>" class="inline-block bg-blue-500 text-white py-1 px-2 rounded-lg shadow-md hover:bg-blue-700 transition duration-200">Ubah</a> 
+                            <a href="ubah.php?id=<?= $mhs["id"]; ?>" class="inline-block bg-blue-500 text-white py-1 px-2 rounded-lg shadow-md hover:bg-blue-700 transition duration-200">Ubah</a>
                             <a href="hapus.php?id=<?= $mhs["id"]; ?>" onclick="return confirm('Yakin ingin menghapus data?')" class="inline-block bg-red-500 text-white py-1 px-2 rounded-lg shadow-md hover:bg-red-700 transition duration-200">Hapus</a>
 
                         </td>
@@ -131,6 +131,17 @@ if ($keyword) {
 
         <!-- navigasi pagination -->
         <div class="mt-4 flex justify-end gap-2 items-center">
+            <div class="flex items-center mr-7">
+                <form action="" method="get">
+                    <label for="jumlahDataTampil" class="mr-2">Jumlah Data:</label>
+                    <select name="jumlahDataTampil" id="jumlahDataTampil" onchange="this.form.submit()" class="border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="2" <?= $jumlahDataPerHalaman == 2 ? 'selected' : '' ?> class="text-center">2</option>
+                        <option value="3" <?= $jumlahDataPerHalaman == 3 ? 'selected' : '' ?> class="text-center">3</option>
+                        <option value="4" <?= $jumlahDataPerHalaman == 4 ? 'selected' : '' ?> class="text-center">4</option>
+                    </select>
+                </form>
+            </div>
+
             <?php if ($halamanAktif > 1) : ?>
                 <a href="?halaman=<?= $halamanAktif - 1; ?>&keyword=<?= $keyword; ?>&jumlahDataTampil=<?= $jumlahDataPerHalaman; ?>" class="text-blue-500 hover:underline"> &laquo; Previous</a>
             <?php endif; ?>
@@ -143,20 +154,11 @@ if ($keyword) {
                 <?php endif; ?>
             <?php endfor; ?>
 
+
             <?php if ($halamanAktif < $jumlahHalaman) : ?>
                 <a href="?halaman=<?= $halamanAktif + 1; ?>&keyword=<?= $keyword; ?>&jumlahDataTampil=<?= $jumlahDataPerHalaman; ?>" class="text-blue-500 hover:underline">Next &raquo;</a>
             <?php endif; ?>
 
-            <div class="flex items-center ml-4">
-                <form action="" method="get">
-                    <label for="jumlahDataTampil" class="mr-2">Jumlah Data:</label>
-                    <select name="jumlahDataTampil" id="jumlahDataTampil" onchange="this.form.submit()" class="border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="2" <?= $jumlahDataPerHalaman == 2 ? 'selected' : '' ?> class="text-center">2</option>
-                        <option value="3" <?= $jumlahDataPerHalaman == 3 ? 'selected' : '' ?> class="text-center">3</option>
-                        <option value="4" <?= $jumlahDataPerHalaman == 4 ? 'selected' : '' ?> class="text-center">4</option>
-                    </select>
-                </form>
-            </div>
         </div>
 
     </div>
